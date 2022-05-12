@@ -1,0 +1,24 @@
+POST http://localhost:7739/harvester/simulation
+Content-Type: application/json
+
+{
+  "devId": "asdasdasd",
+	"harvId": "SolarLightLoad",
+	"lowpwrI": 400,
+	"activeI": 715,
+	"duty": 50,
+	"Vload": 5,
+  	"devAvgI": null,
+	"batSOC": null,
+	"batV": 3.75,
+	"phIrr": 700,
+	"thThot": null,
+	"thTcold": null,
+	"thGrad": null,
+	"vibAcc": null,
+	"vibFreq": null
+}
+################################
+
+
+GET http://localhost:7739/harvester/simulation/aa4ad5d43f0cac33a2f8fbab7cac3066cafb3dd2
