@@ -14,12 +14,12 @@ const addInput = (input) => {
       input.batSOC,
       input.phIrr
     );
+    console.log(`finished simulation of ${hash}`);
   }, processingTime.getProcessingTime() * 1000);
   return hash;
 };
 
 const getSimulation = (id) => {
-  console.log(hashTable);
   return hashTable[id];
 };
 
@@ -50,7 +50,7 @@ const calculateSimulation = (duty, batteryLevel, irr) => {
     batlifeh: -1,
     tChargeh: -1,
   };
-  console.log(`duty: ${duty}, bat: ${batteryLevel}`);
+  //console.log(`duty: ${duty}, bat: ${batteryLevel}`);
   let batSOC = (0.6279 * batteryLevel - 1.548) * 100;
   if (batSOC > 100) batSOC = 100;
   else if (batSOC < 0) batSOC = 0;
@@ -59,9 +59,9 @@ const calculateSimulation = (duty, batteryLevel, irr) => {
 
   let batlifeh =
     (3250 * (batSOC / 100)) / Math.abs(misteriousData);
-  console.log(
+  /* console.log(
     `duty: ${duty}, bat: ${duty}, irr: ${irr}, batlifeh ${batlifeh}`
-  );
+  ); */
   if (duty == 0) batlifeh *= 1.1;
   battery.batlifeh = batlifeh;
   return battery;
