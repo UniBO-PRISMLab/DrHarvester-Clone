@@ -45,15 +45,15 @@ const simulate = (duty, batteryLevel, irr) => {
   return simulation;
 };
 
-const calculateSimulation = (duty, batteryLevel, irr) => {
+const calculateSimulation = (duty, batSOC, irr) => {
   let battery = {
     batlifeh: -1,
     tChargeh: -1,
   };
   //console.log(`duty: ${duty}, bat: ${batteryLevel}`);
-  let batSOC = (0.6279 * batteryLevel - 1.548) * 100;
+/*   let batSOC = (0.6279 * batteryLevel - 1.548) * 100;
   if (batSOC > 100) batSOC = 100;
-  else if (batSOC < 0) batSOC = 0;
+  else if (batSOC < 0) batSOC = 0; */
 
   const misteriousData = -0.424 * irr + (648 + 5.8 * duty);
 
