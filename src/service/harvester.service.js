@@ -8,14 +8,22 @@ const addInput = (input) => {
     terminated: false,
     result: null,
   };
-  setTimeout(() => {
+  if (input.isCache) {
     hashTable[hash] = simulate(
       input.duty,
       input.batSOC,
       input.phIrr
     );
-    console.log(`finished simulation of ${hash}`);
-  }, processingTime.getProcessingTime() * 1000);
+    console.log(`finished CACHED simulation of ${hash}`);
+  } else
+    setTimeout(() => {
+      hashTable[hash] = simulate(
+        input.duty,
+        input.batSOC,
+        input.phIrr
+      );
+      console.log(`finished simulation of ${hash}`);
+    }, processingTime.getProcessingTime() * 1000);
   return hash;
 };
 
@@ -50,22 +58,19 @@ const calculateSimulation = (duty, batSOC, irr) => {
     batlifeh: -1,
     tChargeh: -1,
   };
-  //console.log(`duty: ${duty}, bat: ${batteryLevel}`);
-/*   let batSOC = (0.6279 * batteryLevel - 1.548) * 100;
-  if (batSOC > 100) batSOC = 100;
-  else if (batSOC < 0) batSOC = 0; */
-
-  const misteriousData = -0.424 * irr + (648 + 5.8 * duty);
-
+  //const misteriousData = -0.424 * irr + (648 + 5.8 * duty);
+  //* Update values to increase battery lifetime to a week
+  const misteriousData = -0.03 * irr - (5.068 + 0.15* duty);
   let batlifeh =
     (3250 * (batSOC / 100)) / Math.abs(misteriousData);
-  /* console.log(
-    `duty: ${duty}, bat: ${duty}, irr: ${irr}, batlifeh ${batlifeh}`
-  ); */
   if (duty == 0) batlifeh *= 1.1;
   battery.batlifeh = batlifeh;
   return battery;
 };
+
+
+
+
 
 module.exports = {
   getSimulation,
