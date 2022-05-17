@@ -58,9 +58,9 @@ const calculateSimulation = (duty, batSOC, irr) => {
     batlifeh: -1,
     tChargeh: -1,
   };
-  //const misteriousData = -0.424 * irr + (648 + 5.8 * duty);
+  const misteriousData = (-0.424 * irr + (648 + 5.8 * duty))/25;
   //* Update values to increase battery lifetime to a week
-  const misteriousData = -0.03 * irr - (5.068 + 0.15* duty);
+  //const misteriousData = -0.03 * irr - (5.068 + 0.15* duty);
   let batlifeh =
     (3250 * (batSOC / 100)) / Math.abs(misteriousData);
   if (duty == 0) batlifeh *= 1.1;
